@@ -4,7 +4,7 @@ import Header from "./Header";
 import OperationsField from "./OperationsField";
 import DataTable from "./DataTable";
 const Container = styled.div`
-  width: 900px;
+  max-width: 1300px;
 `;
 
 const useProgram = () => {

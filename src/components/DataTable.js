@@ -6,7 +6,13 @@ import _head from "lodash/head";
 import _map from "lodash/map";
 
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
   max-height: 600px;
+  width: 100%;
+  table {
+    width: 100%;
+  }
   thead {
     background-color: whitesmoke;
     th {
@@ -29,6 +35,7 @@ const Empty = styled.div`
   justify-content: center;
   align-items: center;
   height: 400px;
+  width: 100%;
 `;
 
 const useDataTable = ({ tab, listData }) => {
