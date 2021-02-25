@@ -7,6 +7,7 @@ const Container = styled.div`
   max-width: 1300px;
   background-color: white;
   padding: 10px;
+  min-height: 574px;
 `;
 
 const useProgram = () => {
