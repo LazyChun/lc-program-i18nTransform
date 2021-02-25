@@ -31,9 +31,9 @@ const Container = styled.div`
   }
 `;
 
-const exportToXlsx = ({ data }) => {
+const exportToXlsx = ({ data, currentFileName }) => {
   var sheet = XLSX.utils.json_to_sheet(data);
-  openDownloadDialog(sheet2blob(sheet), "platform_i18n.xlsx");
+  openDownloadDialog(sheet2blob(sheet), `${currentFileName || "default"}.xlsx`);
 };
 
 const exportToJs = ({ data }) => {
@@ -60,7 +60,7 @@ const getButtonTextByTab = tab => {
   return text;
 };
 
-const OperationsField = ({ listData, tab }) => {
+const OperationsField = ({ listData, tab, currentFileName }) => {
   const isJson = tab === "json";
 
   return (
@@ -70,7 +70,7 @@ const OperationsField = ({ listData, tab }) => {
         disabled={!tab}
         onClick={() =>
           isJson
-            ? exportToXlsx({ data: listData })
+            ? exportToXlsx({ data: listData, currentFileName })
             : exportToJs({ data: listData })
         }
       >

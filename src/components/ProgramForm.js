@@ -10,15 +10,39 @@ const Container = styled.div`
 const useProgram = () => {
   const [tab, setTab] = useState("");
   const [i18nData, setI18nData] = useState(null);
-  return { i18nData, setI18nData, tab, setTab };
+  const [currentFileName, setCurrentFileName] = useState("");
+  return {
+    i18nData,
+    setI18nData,
+    tab,
+    setTab,
+    currentFileName,
+    setCurrentFileName
+  };
 };
 
 const ProgramForm = () => {
-  const { i18nData, setI18nData, tab, setTab } = useProgram();
+  const {
+    i18nData,
+    setI18nData,
+    tab,
+    setTab,
+    currentFileName,
+    setCurrentFileName
+  } = useProgram();
   return (
     <Container>
-      <Header onUpdateI18nData={setI18nData} onUpdateTab={setTab} />
-      <OperationsField tab={tab} listData={i18nData} />
+      <Header
+        onUpdateI18nData={setI18nData}
+        onUpdateTab={setTab}
+        setCurrentFileName={setCurrentFileName}
+        currentFileName={currentFileName}
+      />
+      <OperationsField
+        tab={tab}
+        listData={i18nData}
+        currentFileName={currentFileName}
+      />
       <DataTable listData={i18nData} />
     </Container>
   );

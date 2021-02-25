@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Dropzone from "react-dropzone";
 import _isEmpty from "lodash/isEmpty";
 import _head from "lodash/head";
+import _split from "lodash/split";
 
 const Container = styled.div`
   background-color: whitesmoke;
@@ -24,7 +25,13 @@ const InputBox = styled.div`
   cursor: pointer;
 `;
 
-const DropButton = ({ text, accept, onUpdateFile,onUpdateTab }) => {
+const DropButton = ({
+  text,
+  accept,
+  onUpdateFile,
+  onUpdateTab,
+  setCurrentFileName
+}) => {
   return (
     <Container>
       <Dropzone
@@ -34,7 +41,9 @@ const DropButton = ({ text, accept, onUpdateFile,onUpdateTab }) => {
           if (!_isEmpty(acceptedFiles)) {
             const file = _head(acceptedFiles);
             onUpdateFile(file);
-            onUpdateTab()
+            onUpdateTab();
+            const fileName = file.name;
+            setCurrentFileName(_head(_split(fileName, ".")));
           }
           console.log(acceptedFiles);
         }}

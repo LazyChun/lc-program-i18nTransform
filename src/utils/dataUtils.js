@@ -4,7 +4,7 @@ import _keysIn from "lodash/keysIn";
 import _xor from "lodash/xor";
 import _get from "lodash/get";
 
-export const getDataByI18nConfig = ({ i18nConfig }) => {
+export const getDataByI18nConfig = ({ i18nConfig,fileName }) => {
   let data = [];
   let index = 1;
   function insertKeyValue(obj, path) {
@@ -14,7 +14,7 @@ export const getDataByI18nConfig = ({ i18nConfig }) => {
         data.push({
           "#": index,
           key: path ? path + "." + key : key,
-          zh: value
+          [fileName?fileName:"lan"]: value
         });
         index++;
       } else if (typeof value === "object") {
