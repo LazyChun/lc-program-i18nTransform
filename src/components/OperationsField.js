@@ -15,6 +15,20 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  .export_btn {
+    background-color: ${props =>
+      props.exportDisabled ? "darkgray" : "dodgerblue"};
+    pointer-events: ${props => (props.exportDisabled ? "none" : "")};
+    outline: none;
+    font-size: 18px;
+    color: ${props => (props.exportDisabled ? "whitesomke" : "white")};
+    border-radius: 4px;
+    padding: 6px 20px;
+    border: none;
+    cursor: pointer;
+  }
 `;
 
 const exportToXlsx = ({ data }) => {
@@ -50,8 +64,9 @@ const OperationsField = ({ listData, tab }) => {
   const isJson = tab === "json";
 
   return (
-    <Container>
+    <Container exportDisabled={!tab}>
       <button
+        className={"export_btn"}
         disabled={!tab}
         onClick={() =>
           isJson
