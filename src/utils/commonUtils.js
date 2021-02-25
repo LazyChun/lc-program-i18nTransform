@@ -4,7 +4,7 @@ import XLSX from "xlsx";
  * @param url 下载地址，也可以是一个blob对象，必选
  * @param saveName 保存文件名，可选
  */
-export function openDownloadDialog(url, saveName) {
+export function openDownloadDialog(url, saveName, onCompleted) {
   if (typeof url == "object" && url instanceof Blob) {
     url = URL.createObjectURL(url); // 创建blob地址
   }
@@ -34,6 +34,7 @@ export function openDownloadDialog(url, saveName) {
     );
   }
   aLink.dispatchEvent(event);
+  onCompleted();
 }
 // 将一个sheet转成最终的excel文件的blob对象，然后利用URL.createObjectURL下载
 export function sheet2blob(sheet, sheetName) {

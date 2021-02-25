@@ -31,12 +31,16 @@ const Container = styled.div`
   }
 `;
 
-const exportToXlsx = ({ data, currentFileName }) => {
+const exportToXlsx = ({ data, currentFileName, onCompleted }) => {
   var sheet = XLSX.utils.json_to_sheet(data);
-  openDownloadDialog(sheet2blob(sheet), `${currentFileName || "default"}.xlsx`);
+  openDownloadDialog(
+    sheet2blob(sheet),
+    `${currentFileName || "default"}.xlsx`,
+    onCompleted
+  );
 };
 
-const exportToJs = ({ data }) => {
+const exportToJs = ({ data, onCompleted }) => {
   const langKeys = getLanguagesKeys(data);
   const langsData = getDataToObjs({ data });
   _each(langKeys, langKey => {
@@ -45,6 +49,7 @@ const exportToJs = ({ data }) => {
       `${langKey}.js`
     );
   });
+  onCompleted();
 };
 
 const getButtonTextByTab = tab => {
@@ -60,21 +65,46 @@ const getButtonTextByTab = tab => {
   return text;
 };
 
-const OperationsField = ({ listData, tab, currentFileName }) => {
+const LoadingText = styled.span`
+  color: white;
+`;
+
+const OperationsField = ({
+  listData,
+  tab,
+  currentFileName,
+  exportLoading,
+  setExportLoading
+}) => {
   const isJson = tab === "json";
 
   return (
-    <Container exportDisabled={!tab}>
+    <Container exportDisabled={!tab || exportLoading}>
       <button
         className={"export_btn"}
-        disabled={!tab}
-        onClick={() =>
+        disabled={!tab || exportLoading}
+        onClick={() => {
+          setExportLoading(true);
           isJson
-            ? exportToXlsx({ data: listData, currentFileName })
-            : exportToJs({ data: listData })
-        }
+            ? exportToXlsx({
+                data: listData,
+                currentFileName,
+                onCompleted: () => null
+              })
+            : exportToJs({
+                data: listData,
+                onCompleted: () => null
+              });
+          setTimeout(() => {
+            setExportLoading(false);
+          }, 1500);
+        }}
       >
-        导出{getButtonTextByTab(tab)}
+        {exportLoading ? (
+          <LoadingText>正在导出中</LoadingText>
+        ) : (
+          <span>导出{getButtonTextByTab(tab)}</span>
+        )}
       </button>
     </Container>
   );

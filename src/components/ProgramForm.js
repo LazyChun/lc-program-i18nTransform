@@ -11,13 +11,16 @@ const useProgram = () => {
   const [tab, setTab] = useState("");
   const [i18nData, setI18nData] = useState(null);
   const [currentFileName, setCurrentFileName] = useState("");
+  const [exportLoading, setExportLoading] = useState(false);
   return {
     i18nData,
     setI18nData,
     tab,
     setTab,
     currentFileName,
-    setCurrentFileName
+    setCurrentFileName,
+    exportLoading,
+    setExportLoading
   };
 };
 
@@ -28,7 +31,9 @@ const ProgramForm = () => {
     tab,
     setTab,
     currentFileName,
-    setCurrentFileName
+    setCurrentFileName,
+    exportLoading,
+    setExportLoading
   } = useProgram();
   return (
     <Container>
@@ -42,6 +47,8 @@ const ProgramForm = () => {
         tab={tab}
         listData={i18nData}
         currentFileName={currentFileName}
+        exportLoading={exportLoading}
+        setExportLoading={setExportLoading}
       />
       <DataTable listData={i18nData} />
     </Container>
