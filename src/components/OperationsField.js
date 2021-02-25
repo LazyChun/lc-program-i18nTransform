@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import XLSX from "xlsx";
-import { openDownloadDialog, sheet2blob } from "../commonUtils";
+import { openDownloadDialog, sheet2blob } from "../utils/commonUtils";
 
 const Container = styled.div`
   display: flex;
