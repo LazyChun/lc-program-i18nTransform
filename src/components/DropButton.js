@@ -11,8 +11,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 6px;
-  padding: 0px 14px;
-
+  padding: 0px 24px;
+  border: 1px dashed darkgray;
   .file_input {
   }
 `;
@@ -23,6 +23,16 @@ const InputBox = styled.div`
     outline: none !important;
   }
   cursor: pointer;
+`;
+
+const Add = styled.div`
+  font-size: 40px;
+  padding-bottom: 6px;
+`;
+
+const Text = styled.p`
+  display: flex;
+  align-items: center;
 `;
 
 const DropButton = ({
@@ -52,7 +62,10 @@ const DropButton = ({
           <section>
             <InputBox {...getRootProps()}>
               <input className={"file_input"} {...getInputProps()} />
-              <p>{text}</p>
+              <Text>
+                <Add>+</Add>
+                <div>{text}</div>
+              </Text>
             </InputBox>
           </section>
         )}

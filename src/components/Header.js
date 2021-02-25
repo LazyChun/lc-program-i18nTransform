@@ -10,14 +10,14 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const useHeader = ({ onUpdateI18nData,fileName }) => {
+const useHeader = ({ onUpdateI18nData, fileName }) => {
   const [textFile, setTextFile] = useState(null);
   const [xlsxFile, setXlsxFile] = useState(null);
   const { i18nConfig } = useParseJsOrJsonToObj(textFile);
   const { languagesData } = useReadXlsxFileToData({ xlsxFile });
   useEffect(() => {
     if (i18nConfig) {
-      const data = getDataByI18nConfig({ i18nConfig,fileName });
+      const data = getDataByI18nConfig({ i18nConfig, fileName });
       onUpdateI18nData(data);
     }
   }, [i18nConfig]);
@@ -27,8 +27,16 @@ const useHeader = ({ onUpdateI18nData,fileName }) => {
   return { setTextFile, i18nConfig, setXlsxFile };
 };
 
-const Header = ({ onUpdateI18nData, onUpdateTab, setCurrentFileName ,currentFileName}) => {
-  const { setTextFile, setXlsxFile } = useHeader({ onUpdateI18nData,fileName:currentFileName });
+const Header = ({
+  onUpdateI18nData,
+  onUpdateTab,
+  setCurrentFileName,
+  currentFileName
+}) => {
+  const { setTextFile, setXlsxFile } = useHeader({
+    onUpdateI18nData,
+    fileName: currentFileName
+  });
   return (
     <Container>
       <DropButton
@@ -36,14 +44,14 @@ const Header = ({ onUpdateI18nData, onUpdateTab, setCurrentFileName ,currentFile
         onUpdateFile={setTextFile}
         setCurrentFileName={setCurrentFileName}
         accept={[".json", ".js"]}
-        text={"请上传json文件"}
+        text={"请点击或拖拽上传json文件"}
       />
       <DropButton
         onUpdateTab={() => onUpdateTab("xlsx")}
         onUpdateFile={setXlsxFile}
         setCurrentFileName={setCurrentFileName}
         accept={".xlsx"}
-        text={"请上传xlsx文件"}
+        text={"请点击或拖拽上传xlsx文件"}
       />
     </Container>
   );
