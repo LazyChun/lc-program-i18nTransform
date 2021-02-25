@@ -8,7 +8,6 @@ import _map from "lodash/map";
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  max-height: 600px;
   width: 100%;
   background-color: white;
   table {
