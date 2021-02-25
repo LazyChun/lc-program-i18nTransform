@@ -24,7 +24,7 @@ const InputBox = styled.div`
   cursor: pointer;
 `;
 
-const DropButton = ({ text, accept, onUpdateFile }) => {
+const DropButton = ({ text, accept, onUpdateFile,onUpdateTab }) => {
   return (
     <Container>
       <Dropzone
@@ -34,6 +34,7 @@ const DropButton = ({ text, accept, onUpdateFile }) => {
           if (!_isEmpty(acceptedFiles)) {
             const file = _head(acceptedFiles);
             onUpdateFile(file);
+            onUpdateTab()
           }
           console.log(acceptedFiles);
         }}

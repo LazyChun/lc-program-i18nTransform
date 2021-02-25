@@ -1,7 +1,7 @@
 import XLSX from "xlsx";
 import { useState, useEffect } from "react";
-import _set from "lodash/set";
-import _each from "lodash/each";
+import _map from "lodash/map";
+import _omit from "lodash/omit";
 
 export const useReadFileToText = ({ file }) => {
   const [text, setText] = useState("");
@@ -22,8 +22,6 @@ export const useReadFileToText = ({ file }) => {
 export const useReadXlsxFileToData = ({ xlsxFile }) => {
   const [data, setData] = useState(null);
   useEffect(() => {
-    let languagesData = {};
-    const languageKeys = ["ZH", "EN"];
     if (xlsxFile) {
       const reader = new FileReader();
       reader.onload = function(event) {
@@ -37,14 +35,8 @@ export const useReadXlsxFileToData = ({ xlsxFile }) => {
               workbook.Sheets[sheetName]
             );
             if (XL_row_object.length > 0) {
-              //console.log(XL_row_object);
               const items = XL_row_object;
-              for (const i of items) {
-                _each(languageKeys, langKey => {
-                  _set(languagesData[langKey], i.key, i[langKey]);
-                });
-              }
-              setData(languagesData);
+              setData(_map(items, item => _omit(item, ["__rowNum__"])));
             }
           });
         }
@@ -52,5 +44,6 @@ export const useReadXlsxFileToData = ({ xlsxFile }) => {
       reader.readAsBinaryString(xlsxFile);
     }
   }, [xlsxFile]);
+  console.log("data_____________", data);
   return { languagesData: data };
 };

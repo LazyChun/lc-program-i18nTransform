@@ -21,20 +21,24 @@ const useHeader = ({ onUpdateI18nData }) => {
       onUpdateI18nData(data);
     }
   }, [i18nConfig]);
-  useEffect(() => {}, [xlsxFile]);
+  useEffect(() => {
+    onUpdateI18nData(languagesData);
+  }, [languagesData]);
   return { setTextFile, i18nConfig, setXlsxFile };
 };
 
-const Header = ({ onUpdateI18nData }) => {
+const Header = ({ onUpdateI18nData, onUpdateTab }) => {
   const { setTextFile, setXlsxFile } = useHeader({ onUpdateI18nData });
   return (
     <Container>
       <DropButton
+        onUpdateTab={() => onUpdateTab("json")}
         onUpdateFile={setTextFile}
         accept={[".json", ".js"]}
         text={"请上传json文件"}
       />
       <DropButton
+        onUpdateTab={() => onUpdateTab("xlsx")}
         onUpdateFile={setXlsxFile}
         accept={".xlsx"}
         text={"请上传xlsx文件"}
