@@ -8,7 +8,7 @@ const Container = styled.div`
 `;
 
 const useProgram = () => {
-  const [tab, setTab] = useState("json");
+  const [tab, setTab] = useState("");
   const [i18nData, setI18nData] = useState(null);
   return { i18nData, setI18nData, tab, setTab };
 };

@@ -26,23 +26,40 @@ const exportToJs = ({ data }) => {
   const langKeys = getLanguagesKeys(data);
   const langsData = getDataToObjs({ data });
   _each(langKeys, langKey => {
-    exportRaw(obj2string(langsData[langKey]), `${langKey}.js`);
+    exportRaw(
+      "export default " + obj2string(langsData[langKey]),
+      `${langKey}.js`
+    );
   });
 };
 
+const getButtonTextByTab = tab => {
+  let text = "";
+  switch (tab) {
+    case "json":
+      text = "xlsx";
+      break;
+    case "xlsx":
+      text = "js";
+      break;
+  }
+  return text;
+};
+
 const OperationsField = ({ listData, tab }) => {
-  console.log("listData_____________________", listData);
   const isJson = tab === "json";
+
   return (
     <Container>
       <button
+        disabled={!tab}
         onClick={() =>
           isJson
             ? exportToXlsx({ data: listData })
             : exportToJs({ data: listData })
         }
       >
-        导出
+        导出{getButtonTextByTab(tab)}
       </button>
     </Container>
   );

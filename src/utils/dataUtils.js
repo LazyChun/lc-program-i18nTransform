@@ -37,7 +37,7 @@ export const getDataToObjs = ({ data }) => {
   let languagesData = {};
   for (const i of data) {
     _each(languageKeys, langKey => {
-      _set(languagesData[langKey], i.key, i[langKey]);
+      _set(languagesData, langKey + "." + i.key, i[langKey]);
     });
   }
   return languagesData;
