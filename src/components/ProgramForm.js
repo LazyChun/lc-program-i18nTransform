@@ -5,6 +5,8 @@ import OperationsField from "./OperationsField";
 import DataTable from "./DataTable";
 const Container = styled.div`
   max-width: 1300px;
+  background-color: white;
+  padding: 10px;
 `;
 
 const useProgram = () => {

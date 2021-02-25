@@ -10,6 +10,7 @@ const Container = styled.div`
   justify-content: center;
   max-height: 600px;
   width: 100%;
+  background-color: white;
   table {
     width: 100%;
   }
@@ -34,7 +35,7 @@ const Empty = styled.div`
   background-color: whitesmoke;
   justify-content: center;
   align-items: center;
-  height: 400px;
+  height: 300px;
   width: 100%;
 `;
 

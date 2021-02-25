@@ -1,19 +1,28 @@
-const path = require('path');
-const htmlPlugin = require('html-webpack-plugin')
+const path = require("path");
+const htmlPlugin = require("html-webpack-plugin");
+const EncodingPlugin = require("webpack-encoding-plugin");
 module.exports = {
-    mode:'development',
-    entry:{
-        app:path.join(__dirname,'./src/index.js')
-    },
-    output: {
-        filename: "bundle.js",
-        path:path.join(__dirname,'dist')
-    },
-    module: {
-        rules: [{test: /\.js$/,use:['babel-loader'], exclude: path.join(__dirname,'node_modules')}]
-    },
-    plugins:[
-        new htmlPlugin({template: "public/index.html"})
+  mode: "development",
+  entry: {
+    app: path.join(__dirname, "./src/index.js")
+  },
+  output: {
+    filename: "bundle.js",
+    path: path.join(__dirname, "dist")
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: ["babel-loader"],
+        exclude: path.join(__dirname, "node_modules")
+      }
     ]
-
-}
+  },
+  plugins: [
+    new htmlPlugin({ template: "public/index.html" }),
+    new EncodingPlugin({
+      encoding: "UTF-8"
+    })
+  ]
+};

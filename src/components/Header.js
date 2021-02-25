@@ -44,14 +44,14 @@ const Header = ({
         onUpdateFile={setTextFile}
         setCurrentFileName={setCurrentFileName}
         accept={[".json", ".js"]}
-        text={"请点击或拖拽上传json文件"}
+        text={<span>请点击或拖拽上传json文件</span>}
       />
       <DropButton
         onUpdateTab={() => onUpdateTab("xlsx")}
         onUpdateFile={setXlsxFile}
         setCurrentFileName={setCurrentFileName}
         accept={".xlsx"}
-        text={"请点击或拖拽上传xlsx文件"}
+        text={<span>请点击或拖拽上传xlsx文件</span>}
       />
     </Container>
   );
