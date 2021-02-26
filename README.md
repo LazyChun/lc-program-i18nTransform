@@ -2,7 +2,7 @@
 ## 一个18n json 与 xlsx转换的工具
 
 ## 下载：
-git clone 
+git clone https://github.com/LazyChun/lc-program-i18nTransform.git
 
 ## 运行：
 yarn install
