@@ -1,6 +1,9 @@
 # lc-program-i18nTransform
 ## 一个18n json 与 xlsx转换的工具
 
+## DEMO 网址
+https://www.lazychun.com/program/4
+
 ## 下载：
 git clone https://github.com/LazyChun/lc-program-i18nTransform.git
 
