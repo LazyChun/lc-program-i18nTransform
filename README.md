@@ -12,4 +12,4 @@ yarn start
 ## 打包
 yarn build
 
-让后将/dist目录下的bundle.js上传到LazyChun即可
+然后将/dist目录下的bundle.js上传到LazyChun即可
