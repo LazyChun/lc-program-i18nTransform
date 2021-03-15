@@ -46,12 +46,19 @@ const Header = ({
         setCurrentFileName={setCurrentFileName}
         accept={[".json", ".js"]}
         text={<span>请点击或拖拽上传json文件</span>}
+        exampleUrls={[
+          "https://lazychunstatic.oss-cn-shanghai.aliyuncs.com/util_files/planet/programs/lc-program-i18nTransform/zh-CN.js",
+          "https://lazychunstatic.oss-cn-shanghai.aliyuncs.com/util_files/planet/programs/lc-program-i18nTransform/zh-CN.json"
+        ]}
       />
       <DropButton
         onUpdateTab={() => onUpdateTab("xlsx")}
         onUpdateFile={setXlsxFile}
         setCurrentFileName={setCurrentFileName}
         accept={".xlsx"}
+        exampleUrls={[
+          "https://lazychunstatic.oss-cn-shanghai.aliyuncs.com/util_files/planet/programs/lc-program-i18nTransform/zh_en.xlsx"
+        ]}
         text={<span>请点击或拖拽上传xlsx文件</span>}
       />
     </Container>

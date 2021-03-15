@@ -4,8 +4,14 @@ import Dropzone from "react-dropzone";
 import _isEmpty from "lodash/isEmpty";
 import _head from "lodash/head";
 import _split from "lodash/split";
+import Examples from "./Examples";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const BtnContainer = styled.div`
   background-color: whitesmoke;
   display: flex;
   align-items: center;
@@ -40,36 +46,40 @@ const DropButton = ({
   accept,
   onUpdateFile,
   onUpdateTab,
-  setCurrentFileName
+  setCurrentFileName,
+  exampleUrls
 }) => {
   return (
     <Container>
-      <Dropzone
-        accept={accept}
-        maxFiles={1}
-        onDrop={acceptedFiles => {
-          if (!_isEmpty(acceptedFiles)) {
-            const file = _head(acceptedFiles);
-            onUpdateFile(file);
-            onUpdateTab();
-            const fileName = file.name;
-            setCurrentFileName(_head(_split(fileName, ".")));
-          }
-          console.log(acceptedFiles);
-        }}
-      >
-        {({ getRootProps, getInputProps }) => (
-          <section>
-            <InputBox {...getRootProps()}>
-              <input className={"file_input"} {...getInputProps()} />
-              <Text>
-                <Add>+</Add>
-                <div>{text}</div>
-              </Text>
-            </InputBox>
-          </section>
-        )}
-      </Dropzone>
+      <Examples exampleUrls={exampleUrls} />{" "}
+      <BtnContainer>
+        <Dropzone
+          accept={accept}
+          maxFiles={1}
+          onDrop={acceptedFiles => {
+            if (!_isEmpty(acceptedFiles)) {
+              const file = _head(acceptedFiles);
+              onUpdateFile(file);
+              onUpdateTab();
+              const fileName = file.name;
+              setCurrentFileName(_head(_split(fileName, ".")));
+            }
+            console.log(acceptedFiles);
+          }}
+        >
+          {({ getRootProps, getInputProps }) => (
+            <section>
+              <InputBox {...getRootProps()}>
+                <input className={"file_input"} {...getInputProps()} />
+                <Text>
+                  <Add>+</Add>
+                  <div>{text}</div>
+                </Text>
+              </InputBox>
+            </section>
+          )}
+        </Dropzone>
+      </BtnContainer>
     </Container>
   );
 };
