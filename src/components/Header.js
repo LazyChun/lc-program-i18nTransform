@@ -8,7 +8,7 @@ import { getDataByI18nConfig } from "../utils/dataUtils";
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 12px;
 `;
 
 const useHeader = ({ onUpdateI18nData, fileName }) => {

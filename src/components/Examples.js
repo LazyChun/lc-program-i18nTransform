@@ -7,6 +7,7 @@ import { downloadFile } from "../utils/commonUtils";
 
 const Container = styled.div`
   display: flex;
+  margin-bottom: 4px;
 `;
 
 const Title = styled.div``;
@@ -15,6 +16,10 @@ const ExampleBox = styled.div`
   margin-bottom: 4px;
   color: dodgerblue;
   margin-right: 10px;
+  cursor: pointer;
+  &:hover {
+    color: indianred;
+  }
 `;
 
 const Example = ({ url }) => {
